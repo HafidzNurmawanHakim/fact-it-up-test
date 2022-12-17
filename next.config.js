@@ -2,6 +2,9 @@
 const nextConfig = {
   reactStrictMode: true,
   swcMinify: true,
-}
+  env: {
+    custom: "Anjay",
+  },
+};
 
-module.exports = nextConfig
+module.exports = nextConfig;
