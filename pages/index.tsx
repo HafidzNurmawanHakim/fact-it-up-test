@@ -1,6 +1,8 @@
 import Head from "next/head";
 import Link from "next/link";
+import { useAuth } from "../modules/auth/core/Auth";
 import styles from "../styles/Home.module.scss";
+
 export default function Home() {
   return (
     <div className={styles.container}>

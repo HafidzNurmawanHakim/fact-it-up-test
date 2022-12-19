@@ -1,6 +1,18 @@
 import React from "react";
-import { Box, Container, Grid, Paper, TextField } from "@mui/material";
-import loginBg from "../../../public/media/ilustration/login.png";
+import {
+  Box,
+  Button,
+  Container,
+  FormControl,
+  Grid,
+  Paper,
+  TextField,
+  Typography,
+} from "@mui/material";
+import Link from "next/link";
+import { useThemeController } from "../../../app/layout/core/ThemeProvider";
+import { useFormik } from "formik";
+import { AuthInit, AuthSchema } from "../core/_model";
 
 const style = {
   bg: {
@@ -11,21 +23,83 @@ const style = {
 };
 
 const LoginComponent = () => {
+  const formik = useFormik({
+    initialValues: AuthInit,
+    validationSchema: AuthSchema,
+    onSubmit: async (values, actions) => {
+      return alert(JSON.stringify(values));
+    },
+  });
+
   return (
     <Container maxWidth={false} disableGutters>
       <Paper style={style.bg} square>
         <Grid container>
           <Grid item xs={0} md={6}></Grid>
-          <Grid item xs={12} md={6}>
-            <Box component="div" pt={10} pl={10}>
-              <Grid>
-                <h3>Login</h3>
-                <TextField
-                  id="outlined-basic"
-                  label="Username"
-                  variant="outlined"
-                />
-              </Grid>
+          <Grid item xs={24} md={6}>
+            <Box component="form" pt={15} pl={10}>
+              <div className="col-7">
+                <Paper className="shadow pe-5 p-4">
+                  <h3 className="mb-4">Login</h3>
+                  <FormControl
+                    fullWidth
+                    sx={{ m: 1 }}
+                    variant="standard"
+                    className="mb-3"
+                  >
+                    <TextField
+                      {...formik.getFieldProps("username")}
+                      variant="outlined"
+                      label="Username"
+                      type="text"
+                      error={
+                        formik.touched.username && formik.errors.username
+                          ? true
+                          : false
+                      }
+                    />
+                    {formik.touched.username && formik.errors.username ? (
+                      <Typography variant="body2" color="red">
+                        {formik.errors.username}
+                      </Typography>
+                    ) : null}
+                  </FormControl>
+                  <FormControl
+                    fullWidth
+                    sx={{ m: 1 }}
+                    variant="standard"
+                    className="mb-3"
+                  >
+                    <TextField
+                      {...formik.getFieldProps("password")}
+                      variant="outlined"
+                      label="Password"
+                      type="password"
+                      error={
+                        formik.touched.password && formik.errors.password
+                          ? true
+                          : false
+                      }
+                    />
+                    {formik.touched.password && formik.errors.password ? (
+                      <Typography variant="body2" color="red">
+                        {formik.errors.password}
+                      </Typography>
+                    ) : null}
+                  </FormControl>
+                  <Typography variant="body2" className="ms-2 ">
+                    <Link href="#" className="text-decoration-none">
+                      Lupa password?
+                    </Link>
+                  </Typography>
+
+                  <div className="row ps-3 my-5">
+                    <Button variant="outlined" onClick={formik.submitForm}>
+                      Submit
+                    </Button>
+                  </div>
+                </Paper>
+              </div>
             </Box>
           </Grid>
         </Grid>
