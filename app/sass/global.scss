@@ -1,2 +1,42 @@
 $dark-bg: #16213e;
 $dark-text: #00bdaa;
+
+// GRAY COLOR
+$gray-100:   #f5f8fa;
+$gray-200:   #eff2f5;
+$gray-300:   #e4e6ef;
+$gray-400:   #b5b5c3;
+$gray-500:   #a1a5b7;
+$gray-600:   #7e8299;
+$gray-700:   #5e6278;
+$gray-800:   #3f4254;
+$gray-900:   #181c32;
+
+
+// THEME COLORs
+
+$white: #fff !default;
+$secondary: $gray-300 !default; // Bootstrap variable
+$info: #8950fc !default; // Bootstrap variable
+$danger: #f64e60 !default; // Bootstrap variable
+$warning: #ffa800 !default; // Bootstrap variable
+$secondary-active: $gray-400 !default; // Custom variable
+$primary: #3699ff !default; // Bootstrap variable
+
+
+// THEME COLORS 
+$theme-colors: (
+  'white': $white,
+  // custom color type
+  'primary': $primary,
+  'secondary': $secondary,
+  'info': $info,
+  'warning': $warning,
+  'danger': $danger,
+) !default;
+
+
+
+
+$border-color: $gray-200 !default;
+$border-dashed-color: $gray-300 !default; 

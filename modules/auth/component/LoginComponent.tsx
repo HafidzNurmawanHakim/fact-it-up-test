@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import {
   Box,
   Button,
@@ -13,6 +13,7 @@ import Link from "next/link";
 import { useThemeController } from "../../../app/layout/core/ThemeProvider";
 import { useFormik } from "formik";
 import { AuthInit, AuthSchema } from "../core/_model";
+import { getSession, signIn } from "next-auth/react";
 
 const style = {
   bg: {
@@ -27,7 +28,12 @@ const LoginComponent = () => {
     initialValues: AuthInit,
     validationSchema: AuthSchema,
     onSubmit: async (values, actions) => {
-      return alert(JSON.stringify(values));
+      return await signIn("credentials", {
+        redirect: true,
+        username: values.username,
+        password: values.password,
+        callbackUrl: "/",
+      });
     },
   });
 
@@ -95,7 +101,7 @@ const LoginComponent = () => {
 
                   <div className="row ps-3 my-5">
                     <Button variant="outlined" onClick={formik.submitForm}>
-                      Submit
+                      Login
                     </Button>
                   </div>
                 </Paper>

@@ -4,16 +4,16 @@ import type { AppProps } from "next/app";
 import { AppControllerProvider } from "../app/layout/core/AppController";
 import { ThemeControllerProvider } from "../app/layout/core/ThemeProvider";
 import "bootstrap/dist/css/bootstrap.css";
-import { AuthProvider } from "../modules/auth/core/Auth";
+import { SessionProvider, useSession } from "next-auth/react";
 
 export default function App({ Component, pageProps }: AppProps) {
   return (
-    <AuthProvider>
+    <SessionProvider>
       <ThemeControllerProvider>
         <AppControllerProvider>
           <Component {...pageProps} />
         </AppControllerProvider>
       </ThemeControllerProvider>
-    </AuthProvider>
+    </SessionProvider>
   );
 }

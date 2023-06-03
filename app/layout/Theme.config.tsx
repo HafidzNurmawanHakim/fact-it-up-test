@@ -1,6 +1,14 @@
 import { createTheme } from "@mui/material/styles";
 import { amber, deepOrange, grey } from "@mui/material/colors";
-import { PaletteMode } from "@mui/material";
+import {
+  DeprecatedThemeOptions,
+  PaletteMode,
+  ThemeCssVarOverrides,
+  ThemeOptions,
+  ThemeVars,
+  ThemeWithProps,
+  ThemedProps,
+} from "@mui/material";
 
 export const getDesignTokens = (mode: PaletteMode) => ({
   palette: {
@@ -8,14 +16,26 @@ export const getDesignTokens = (mode: PaletteMode) => ({
     ...(mode === "light"
       ? {
           // palette values for light mode
-          divider: amber[200],
+          divider: "#eff2f5",
           background: {
-            default: "#FBFBFB ",
-            paper: "#FBFBFB ",
+            default: "#fff",
+            paper: "#f5f8fa",
           },
           text: {
             primary: grey[900],
             secondary: grey[800],
+          },
+          components: {
+            MuiChip: {
+              variants: [
+                {
+                  props: { variant: "light" },
+                  style: {
+                    background: "rgba(226, 49, 22, 0.23)",
+                  },
+                },
+              ],
+            },
           },
         }
       : {
@@ -26,7 +46,7 @@ export const getDesignTokens = (mode: PaletteMode) => ({
           divider: deepOrange[700],
           background: {
             default: "#16213e",
-            paper: "#16213e",
+            paper: "#10182E",
           },
           text: {
             primary: "#fff",
