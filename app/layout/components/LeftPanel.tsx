@@ -1,88 +1,277 @@
-import { CaretLeftOutlined, EllipsisOutlined } from "@ant-design/icons";
 import {
-  Badge,
-  Box,
-  Chip,
-  Collapse,
-  Divider,
-  IconButton,
-  Paper,
-  Stack,
-  Typography,
+	CaretLeftOutlined,
+	CustomerServiceOutlined,
+	LayoutOutlined,
+	PictureOutlined,
+	PlaySquareOutlined,
+	TeamOutlined,
+} from "@ant-design/icons";
+import {
+	Badge,
+	Box,
+	Chip,
+	Collapse,
+	Divider,
+	IconButton,
+	LinearProgress,
+	Paper,
+	Stack,
+	Theme,
+	Typography,
+	createStyles,
 } from "@mui/material";
 import { useSession } from "next-auth/react";
 import Image from "next/image";
 import CustomChips from "../../../modules/component/CustomChips";
 import { useAppController } from "../core/AppController";
+import Link from "next/link";
+import MemoGroupIcon from "../../icons/GroupIcon";
+import Grid2 from "@mui/material/Unstable_Grid2";
 
 export default function LeftPanel() {
-  const { data: session } = useSession();
-  const {
-    leftPanel,
-    setLeftPanel,
-    setMainGrid,
-    heightBrowser,
-    heightNav,
-    heightLeftPanel,
-  } = useAppController();
+	const { data: session } = useSession();
+	const {
+		leftPanel,
+		setLeftPanel,
+		setMainGrid,
+		heightBrowser,
+		heightNav,
+		heightLeftPanel,
+	} = useAppController();
 
-  const hideLeftPanel = () => {
-    setLeftPanel(!leftPanel);
-    setMainGrid(12);
-  };
+	const hideLeftPanel = () => {
+		setLeftPanel(!leftPanel);
+		setMainGrid(24);
+	};
 
-  const children = (
-    <div className="row mt-2 pe-0 me-0 ">
-      <Paper
-        sx={{
-          pb: "5px",
-          position: "relative",
-          width: { sm: 320 },
-          zIndex: 7,
-          overflow: "hidden",
-          transition: "all 0.3s ease-in-out",
-          background: (theme) => theme.palette.background.default,
-        }}
-        id="panel"
-        elevation={0}
-        className="scroll-bar"
-      >
-        <Box
-          component="div"
-          sx={{
-            width: { xs: 340, sm: 320 },
-            maxHeight:
-              heightBrowser.valueOf() - (heightNav.valueOf() || 80) - 65,
-          }}
-        >
-          <div className="col d-flex flex-column justify-content-between">
-            <div>
-              <div className="d-flex m-2 py-2 col-sm-12">
-                <div className="col-3 d-flex  flex-row justify-content-center align-items-center">
-                  <Image
-                    width={80}
-                    height={80}
-                    style={{ borderRadius: "4px" }}
-                    src="/media/avatar/avatar1.png"
-                    alt="logo"
-                  />
-                </div>
-                <Paper elevation={0} className="col-8 ms-2 ps-2 py-2 ">
-                  <div className="d-flex">
-                    <Typography
-                      sx={{ fontFamily: "poppins", ms: 1 }}
-                      color="textSecondary"
-                    >
-                      {session?.user?.name}
-                    </Typography>
-                    <CustomChips />
-                  </div>
-                </Paper>
-              </div>
+	const children = (
+		<>
+			<Paper
+				sx={{
+					pb: "5px",
+					position: "relative",
+					zIndex: 7,
+					marginLeft: "6px",
+					overflow: "hidden",
+					transition: "all 0.3s ease-in-out",
+					background: (theme) => theme.palette.background.default,
+				}}
+				id="panel"
+				elevation={0}
+				className="scroll-bar"
+			>
+				<Box
+					sx={{
+						position: "absolute",
+						right: "5px",
+						p: "2px",
+						zIndex: 8,
+						transition: "0.3s ease-in-out",
+					}}
+				>
+					<IconButton
+						sx={{
+							height: "80px",
+							borderRadius: "4px",
+							m: "2px",
+						}}
+						size="small"
+						onClick={hideLeftPanel}
+					>
+						<CaretLeftOutlined rev={null} />
+					</IconButton>
+				</Box>
+				<Box
+					component="div"
+					sx={{
+						width: { xs: "95vw", md: 310 },
+						height: "86vh",
+					}}
+				>
+					<div>
+						<Grid2
+							container
+							columns={20}
+							pt={2}
+							mb={2}
+							justifyContent="space-between"
+							direction="row"
+						>
+							<Grid2 component="div" xs>
+								<Grid2
+									container
+									direction="column"
+									alignContent="center"
+									justifyContent="center"
+									height="100%"
+								>
+									<Grid2 component="div" xs={4}>
+										<Image
+											width={80}
+											height={80}
+											style={{ borderRadius: "4px" }}
+											src="/media/avatar/avatar1.png"
+											alt="logo"
+										/>
+									</Grid2>
+									<Grid2 component="div" xs>
+										<CustomChips sx={{ mt: 2 }} />
+									</Grid2>
+								</Grid2>
+							</Grid2>
+							<Grid2 component="div" xs={14} bgcolor="aqua" height="100%">
+								<Paper
+									elevation={0}
+									sx={{
+										background: (theme) => theme.palette.background.default,
+									}}
+								>
+									<div className="d-flex flex-column">
+										<Typography
+											sx={{
+												fontFamily: "poppins",
+												ml: "4px",
+											}}
+											color="textSecondary"
+											variant="body2"
+										>
+											{session?.user?.name}
+										</Typography>
+										<Box
+											sx={{
+												pt: "5px",
+												mt: "5px",
+											}}
+										>
+											<div className="crcl"></div>
+											<Grid2 container justifyContent="center" maxWidth={"80%"} className="glass">
+												<Divider orientation="vertical" flexItem></Divider>
+												<Grid2 component="div" xs>
+													<Grid2 container direction="column" alignItems="center">
+														<Grid2 component="div" mt={1}>
+															<Typography variant="h6" color="#ccc">
+																69
+															</Typography>
+														</Grid2>
+														<Grid2 component="div">
+															<Typography variant="caption" color="#ccc">
+																Pengikut
+															</Typography>
+														</Grid2>
+													</Grid2>
+												</Grid2>
+												<Divider orientation="vertical" flexItem></Divider>
 
-              <span className="separator"></span>
+												<Grid2 component="div" xs>
+													<Grid2 container direction="column" alignItems="center">
+														<Grid2 component="div">
+															<Typography variant="h6" color="#ccc" mt={1}>
+																69
+															</Typography>
+														</Grid2>
+														<Grid2 component="div">
+															<Typography variant="caption" color="#ccc">
+																Hits
+															</Typography>
+														</Grid2>
+													</Grid2>
+												</Grid2>
+											</Grid2>
+										</Box>
+										<Box>
+											<Box
+												sx={{
+													display: "flex",
+													p: "5px 5px",
+													mr: "5px",
+													alignItems: "center",
+												}}
+											>
+												<Box
+													sx={{
+														width: "100%",
+														mr: 1,
+													}}
+												>
+													<LinearProgress
+														sx={{
+															borderRadius: "4px",
+														}}
+														variant="determinate"
+														value={70}
+													/>
+												</Box>
+												<Box sx={{ minWidth: 35 }}>
+													<Typography variant="body2" fontSize="10px" color="text.secondary">
+														70%
+													</Typography>
+												</Box>
+											</Box>
+										</Box>
+									</div>
+								</Paper>
+							</Grid2>
+						</Grid2>
 
-              <Box className="pb-2">
+						<Divider></Divider>
+
+						<Box mt={1}>
+							{menuItem.map((item) => {
+								return (
+									<Link
+										href="#"
+										style={{
+											textDecoration: "none",
+											width: "100%",
+											height: "40px",
+											display: "flex",
+											alignItems: "center",
+										}}
+									>
+										<Grid2
+											container
+											sx={{
+												p: "8px 2px",
+												width: "80%",
+												ml: "20px",
+
+												":hover": {
+													background: "#f5f5f5",
+													borderRadius: "6px",
+													transition: "0.3s",
+
+													"& > *, .MuiTypography-root": {
+														color: "rgb(0, 138, 208)",
+														transition: "0.3s",
+													},
+												},
+											}}
+											alignItems="center"
+										>
+											<Grid2
+												component="div"
+												xs={1}
+												mx={2}
+												display="flex"
+												alignItems="center"
+												height="100%"
+												fontSize="20px"
+												color="#BFCCB5"
+											>
+												{item.icon}
+											</Grid2>
+
+											<Grid2 component="div" xs justifyContent="start" alignItems="center">
+												<Typography variant="body2" color="#555">
+													{item.title}
+												</Typography>
+											</Grid2>
+										</Grid2>
+									</Link>
+								);
+							})}
+						</Box>
+						{/* <Box className="pb-2">
                 <Stack
                   direction="row"
                   spacing={1}
@@ -114,9 +303,9 @@ export default function LeftPanel() {
                     );
                   })}
                 </Stack>
-              </Box>
-            </div>
-            <div className="">
+              </Box> */}
+					</div>
+					{/* <div className="">
               <Divider textAlign="left">
                 <Chip label="Recent" variant="outlined" size="small" />
               </Divider>
@@ -180,95 +369,95 @@ export default function LeftPanel() {
                   })}
                 </Box>
               </Box>
-            </div>
-          </div>
-        </Box>
-      </Paper>
-    </div>
-  );
+            </div> */}
+				</Box>
+			</Paper>
+		</>
+	);
 
-  return (
-    <>
-      <Box position={"relative"}>
-        <Box
-          sx={{
-            position: "absolute",
-            right: "44px",
-            p: "2px",
-            zIndex: 8,
-            transition: "0.3s ease-in-out",
-          }}
-        >
-          <IconButton
-            sx={{
-              height: "80px",
-              borderRadius: "4px",
-              m: "2px",
-              mt: "21px",
-            }}
-            size="small"
-            onClick={hideLeftPanel}
-          >
-            <CaretLeftOutlined />
-          </IconButton>
-        </Box>
-        <Collapse orientation="horizontal" in={leftPanel} collapsedSize={0}>
-          {children}
-        </Collapse>
-      </Box>
-    </>
-  );
+	return (
+		<>
+			<Box>
+				<Collapse orientation="horizontal" in={leftPanel} collapsedSize={0}>
+					{children}
+				</Collapse>
+			</Box>
+		</>
+	);
 }
 
+const menuItem = [
+	{
+		title: "Feed",
+		icon: <LayoutOutlined rev={null} />,
+	},
+	{
+		title: "Friends",
+		icon: <TeamOutlined rev={null} />,
+	},
+	{
+		title: "Galeri",
+		icon: <PictureOutlined rev={null} />,
+	},
+	{
+		title: "Music",
+		icon: <CustomerServiceOutlined rev={null} />,
+	},
+	{
+		title: "Reels",
+		icon: <PlaySquareOutlined rev={null} />,
+	},
+];
+
 const dataFriend = [
-  {
-    id: "1",
-    name: "John",
-    avatar: "/media/avatar/avatar1.png",
-  },
-  {
-    id: "2",
-    name: "Ujang",
-    avatar: "/media/avatar/avatar2.png",
-  },
-  {
-    id: "3",
-    name: "Ucup",
-    avatar: "/media/avatar/avatar3.png",
-  },
-  {
-    id: "4",
-    name: "Siti",
-    avatar: "/media/avatar/avatar4.png",
-  },
-  {
-    id: "5",
-    name: "Anjir",
-    avatar: "/media/avatar/avatar5.png",
-  },
-  {
-    id: "6",
-    name: "Acing",
-    avatar: "/media/avatar/avatar6.png",
-  },
-  {
-    id: "7",
-    name: "Ocit",
-    avatar: "/media/avatar/avatar7.png",
-  },
-  {
-    id: "8",
-    name: "Bgsd",
-    avatar: "/media/avatar/avatar8.png",
-  },
-  {
-    id: "9",
-    name: "Kiritod",
-    avatar: "/media/avatar/avatar9.png",
-  },
-  {
-    id: "10",
-    name: "Agus Septiani",
-    avatar: "/media/avatar/avatar10.png",
-  },
+	{
+		id: "1",
+		name: "John",
+		avatar: "/media/avatar/avatar1.png",
+	},
+	{
+		id: "2",
+		name: "Ujang",
+		avatar: "/media/avatar/avatar2.png",
+	},
+	{
+		id: "3",
+		name: "Ucup",
+		avatar: "/media/avatar/avatar3.png",
+	},
+	{
+		id: "4",
+		name: "Siti",
+		avatar: "/media/avatar/avatar4.png",
+	},
+	{
+		id: "5",
+		name: "Anjir",
+		avatar: "/media/avatar/avatar5.png",
+	},
+	{
+		id: "6",
+		name: "Acing",
+		avatar: "/media/avatar/avatar6.png",
+	},
+	{
+		id: "7",
+		name: "Ocit",
+		avatar: "/media/avatar/avatar7.png",
+	},
+	{
+		id: "8",
+		name: "Bgsd",
+		avatar: "/media/avatar/avatar8.png",
+	},
+	{
+		id: "9",
+		name: "Kiritod",
+		avatar: "/media/avatar/avatar9.png",
+	},
+	{
+		id: "10",
+		name: "Agus Septiani",
+		avatar: "/media/avatar/avatar10.png",
+	},
 ];

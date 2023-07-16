@@ -16,7 +16,7 @@ export const getDesignTokens = (mode: PaletteMode) => ({
     ...(mode === "light"
       ? {
           // palette values for light mode
-          divider: "#eff2f5",
+          // divider: "#eff2f5",
           background: {
             default: "#fff",
             paper: "#f5f8fa",
@@ -43,7 +43,7 @@ export const getDesignTokens = (mode: PaletteMode) => ({
           primary: {
             main: "#00bdaa",
           },
-          divider: deepOrange[700],
+          // divider: deepOrange[700],
           background: {
             default: "#16213e",
             paper: "#10182E",

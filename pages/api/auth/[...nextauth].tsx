@@ -19,7 +19,7 @@ declare module "next-auth/jwt" {
 
 const user = {
   id: "1",
-  name: "Hafidz",
+  name: "Hafidz Hakim",
   email: "johndoe@example.com",
   avatar: "https://johndoe.com/avatar.png",
   bio: "johndoe@example.com",

@@ -2,15 +2,15 @@ $dark-bg: #16213e;
 $dark-text: #00bdaa;
 
 // GRAY COLOR
-$gray-100:   #f5f8fa;
-$gray-200:   #eff2f5;
-$gray-300:   #e4e6ef;
-$gray-400:   #b5b5c3;
-$gray-500:   #a1a5b7;
-$gray-600:   #7e8299;
-$gray-700:   #5e6278;
-$gray-800:   #3f4254;
-$gray-900:   #181c32;
+$gray-100: #f5f8fa;
+$gray-200: #eff2f5;
+$gray-300: #e4e6ef;
+$gray-400: #b5b5c3;
+$gray-500: #a1a5b7;
+$gray-600: #7e8299;
+$gray-700: #5e6278;
+$gray-800: #3f4254;
+$gray-900: #181c32;
 
 
 // THEME COLORs
@@ -25,8 +25,7 @@ $primary: #3699ff !default; // Bootstrap variable
 
 
 // THEME COLORS 
-$theme-colors: (
-  'white': $white,
+$theme-colors: ('white': $white,
   // custom color type
   'primary': $primary,
   'secondary': $secondary,
@@ -39,4 +38,41 @@ $theme-colors: (
 
 
 $border-color: $gray-200 !default;
-$border-dashed-color: $gray-300 !default; 
+$border-dashed-color: $gray-300 !default;
+
+.glass {
+  /* From https://css.glass */
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 16px;
+  // box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(8.5px);
+  -webkit-backdrop-filter: blur(7.5px);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.random-circle {
+  position: absolute;
+
+  .circle {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    /* Anda dapat menambahkan gaya tambahan di sini */
+  }
+}
+
+.crcl {
+  position: relative;
+
+  &::before {
+    content: '';
+    position: absolute;
+    z-index: 0;
+    left: 15px;
+    top: 15px;
+    width: 20px;
+    height: 20px;
+    background-color: salmon;
+
+  }
+}
